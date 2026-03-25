@@ -15,8 +15,8 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
   return (
     <Link
       href={`${buttonLinkTo}`}
-      className="block w-full text-left px-3 py-2 rounded hover:bg-white/10">
-        {buttonContent}
+      className="block w-full text-left px-3 py-1 rounded hover:bg-white/10">
+        • {buttonContent}
     </Link>
   );
 };
