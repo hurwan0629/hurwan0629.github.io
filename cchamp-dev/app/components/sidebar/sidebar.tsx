@@ -1,3 +1,5 @@
+'use client';
+
 import SidebarButton from "./sidebarButton";
 import SidebarButtonContainer from "./sidebarButtonContainer";
 import Link from "next/link";
