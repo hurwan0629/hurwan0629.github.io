@@ -9,7 +9,7 @@ import logo from "./cchamppang.webp";
 export default function Sidebar() {
   return (
     <div className="w-full h-full">
-      <Link href="/posting">
+      <Link href="/">
         <div className="flex gap-2 m-2">
           <Image src={logo} alt="logo" className="w-8 h-8" />
           <span className="flex items-end h-8 font-black text-xl">
