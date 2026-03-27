@@ -4,6 +4,8 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import Link from "next/link";
+import Markdown from "react-markdown";
+import MarkdownRenderer from "@/app/components/post/MarkdownRenderer";
 
 type Props = {
   params: Promise<{
@@ -41,7 +43,7 @@ export default async function PostPage({ params }: Props) {
       <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
       <div className="w-full h-full p-0 ">
         <div className="p-4 bg-white/70 rounded-md shadow-md">
-          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          <MarkdownRenderer content={content} />
         </div>
         <div className="flex justify-end mt-4">
           <Link

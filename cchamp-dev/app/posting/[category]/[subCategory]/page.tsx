@@ -18,7 +18,7 @@ export default async function NextjsPage({ params }: PathVariables) {
   console.log("category:", category);
   console.log("subCategory:", subCategory);
   
-  const postsPath = path.join(process.cwd(), 'public', 'posts', category, subCategory);
+  const postsPath = path.join(process.cwd(), 'app', 'posting', 'posts', category, subCategory);
   if(!fs.existsSync(postsPath)) {
     return <div>등록된 글이 없습니다.</div>;
   }
