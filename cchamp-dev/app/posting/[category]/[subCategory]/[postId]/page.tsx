@@ -18,8 +18,7 @@ export default async function PostPage({ params }: Props) {
 
   const filePath = path.join(
     process.cwd(),
-    "app",
-    "posting",
+    "public",
     "posts",
     category,
     subCategory,
@@ -30,7 +29,7 @@ export default async function PostPage({ params }: Props) {
   console.log("exists:", fs.existsSync(filePath));
   console.log(
     fs.readdirSync(
-      path.join(process.cwd(), "app", "posting", "posts", category, subCategory, ),
+      path.join(process.cwd(), "public", "posts", category, subCategory ),
     ),
   );
 

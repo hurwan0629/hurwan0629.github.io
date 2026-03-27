@@ -18,7 +18,7 @@ export default async function NextjsPage({ params }: PathVariables) {
   console.log("category:", category);
   console.log("subCategory:", subCategory);
   
-  const postsPath = path.join(process.cwd(), 'app', 'posting', 'posts', category, subCategory);
+  const postsPath = path.join(process.cwd(), 'public', 'posts', category, subCategory);
   const fileNames = fs.readdirSync(postsPath);
 
   const posts = fileNames.map((fileName) => {
