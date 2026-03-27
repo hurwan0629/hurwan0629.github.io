@@ -19,7 +19,12 @@ export default async function NextjsPage({ params }: PathVariables) {
   console.log("subCategory:", subCategory);
   
   const postsPath = path.join(process.cwd(), 'public', 'posts', category, subCategory);
+  if(!fs.existsSync(postsPath)) {
+    return <div>등록된 글이 없습니다.</div>;
+  }
+
   const fileNames = fs.readdirSync(postsPath);
+  
 
   const posts = fileNames.map((fileName) => {
     const filePath = path.join(postsPath, fileName);
