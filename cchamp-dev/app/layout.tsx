@@ -34,7 +34,7 @@ export default function RootLayout({
             <Sidebar />
           </aside>
 
-          <main className="flex flex-col flex-1 items-center justify-center bg-gray-300 overflow-y-auto scrollbar-hide">
+          <main className="flex flex-col flex-1 items-center bg-gray-300 overflow-y-auto scrollbar-hide p-4">
               {children}
           </main>
         </div>

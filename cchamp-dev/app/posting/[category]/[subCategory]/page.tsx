@@ -6,8 +6,19 @@ import picture from './posts/2.png';
 import PostListLayout from '@/app/components/posting-page/post-list-layout';
 import { Link } from 'lucide-react';
 
-export default function NextjsPage() {
-  const postsPath = path.join(process.cwd(), 'app', 'posting', 'frontend', 'nextjs', 'posts');
+type PathVariables = {
+  params: Promise<{
+    category: string;
+    subCategory: string;
+  }>;
+};
+
+export default async function NextjsPage({ params }: PathVariables) {
+  const { category, subCategory } = await params;
+  console.log("category:", category);
+  console.log("subCategory:", subCategory);
+  
+  const postsPath = path.join(process.cwd(), 'app', 'posting', 'posts', category, subCategory);
   const fileNames = fs.readdirSync(postsPath);
 
   const posts = fileNames.map((fileName) => {
@@ -26,7 +37,7 @@ export default function NextjsPage() {
   
   return (
     <div className="w-full h-full p-4 bg-white/70 rounded-md shadow-md">
-      <PostListLayout posts={posts} category={"frontend"} subCategory={"nextjs"} />
+      <PostListLayout posts={posts} category={category} subCategory={subCategory} />
     </div>
   );
 }
