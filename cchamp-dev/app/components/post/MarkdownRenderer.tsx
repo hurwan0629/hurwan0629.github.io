@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 
 type Props = {
@@ -12,8 +13,24 @@ export default function MarkdownRenderer({ content }: Props) {
     <article className="prose prose-invert max-w-none">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight]}
+        rehypePlugins={[rehypeRaw, rehypeHighlight]}
         components={{
+          table: ({ children }) => (
+            <div className="overflow-x-auto my-8">
+              <table className="w-full border-collapse border border-gray-400 text-sm text-left">
+                {children}
+              </table>
+            </div>
+          ),
+          thead: ({ children }) => <thead className="bg-gray-100 text-black">{children}</thead>,
+          th: ({ children }) => (
+            <th className="border border-gray-400 px-4 py-2 font-bold">{children}</th>
+          ),
+          td: ({ children }) => (
+            <td className="border border-gray-400 px-4 py-2 text-black">{children}</td>
+          ),
+          tr: ({ children }) => <tr className="even:bg-gray-50">{children}</tr>,
+          // --- 표(Table) 스타일 커스텀 끝 ---
           h1: ({ children }) => (
             <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
           ),

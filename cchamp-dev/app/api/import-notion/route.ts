@@ -5,7 +5,11 @@ import { saveMarkdownFile } from '../../lib/saveMarkdownFile';
 
 export async function POST(req: NextRequest) {
   try {
-    const { notionId, category, subCategory } = await req.json();
+    const { notionId, category, subCategory, password } = await req.json();
+
+    if(password != "Wanny2005!@") {
+      return NextResponse.json({ message: "비밀번호가 틀렸습니다." }, { status: 403 });
+    }
 
     if(!notionId) {
       return NextResponse.json({ message: "필수 값이 부족합니다." }, { status: 400 });

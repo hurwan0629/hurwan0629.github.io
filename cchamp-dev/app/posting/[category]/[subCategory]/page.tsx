@@ -19,7 +19,16 @@ export default async function NextjsPage({ params }: PathVariables) {
   
   const postsPath = path.join(process.cwd(), 'app', 'posting', 'posts', category, subCategory);
   if(!fs.existsSync(postsPath)) {
-    return <div>등록된 글이 없습니다.</div>;
+    return (
+    <div> 
+      <span className="text-lg font-bold">등록된 글이 없습니다.</span>
+      
+      <Link href={`/posting/${category}/${subCategory}/import-notion`} 
+        className="absolute bottom-4 right-4 w-[180px] h-[60px] text-lg font-bold bg-black text-white p-1 rounded-md flex items-center justify-center" >
+        노션에서 글 불러오기
+      </Link>
+    </div>
+    );
   }
 
   const fileNames = fs.readdirSync(postsPath);

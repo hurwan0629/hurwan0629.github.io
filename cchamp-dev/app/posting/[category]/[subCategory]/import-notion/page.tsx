@@ -13,7 +13,8 @@ export default function ImportNotionPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [flag, setFlag] = useState(false);
-  const [content, setContent] = useState('');
+  const [password, setPassword] = useState("");
+  /*const [content, setContent] = useState('');*/
 
   const postingUrl = path.join(
     process.cwd(),
@@ -30,7 +31,7 @@ export default function ImportNotionPage() {
       setLoading(true);
       setMessage(null);
       setFlag(false);
-      setContent('');
+      // setContent('');
 
       const res = await fetch('/api/import-notion', {
         method: "POST",
@@ -40,7 +41,8 @@ export default function ImportNotionPage() {
         body: JSON.stringify({
           notionId,
           category,
-          subCategory
+          subCategory,
+          password
         })
       });
 
@@ -52,7 +54,7 @@ export default function ImportNotionPage() {
       }
 
       setMessage(`저장 성공!\nurl: /posting/${category}/${subCategory}/${notionId}`);
-      setContent(data.markdown ?? '');
+      // setContent(data.markdown ?? '');
       setFlag(true);
     } catch (e) {
       console.error(e);
@@ -67,9 +69,15 @@ export default function ImportNotionPage() {
     <div className="w-full h-full bg-green flex items-center justify-center">
       <div className="w-[800px] h-[400px] bg-white rounded-lg flex flex-col items-center justify-center px-20">
         <p className="self-start">저장할 노션 페이지의 id를 작성하세요</p>
+        {/* 비밀번호 입력 */}
         <input
           className="w-full y-[100px] border border-3 border-gray-300 text-lg m-2" placeholder="노션 페이지 id를 넣으세요"
           onChange={(e) => setNotionId(e.target.value)} />
+        {/* 비밀번호 입력 */}
+        <input
+          type="password"
+          className="w-full y-[100px] border border-3 border-gray-300 text-lg m-2" placeholder="비밀번호를 입력하세요"
+          onChange={(e) => setPassword(e.target.value)} />
         <button
           onClick={tryGetNotionPageMarkdown}
           className="self-end bg-black text-white rounded-md m-2 p-2">글 불러오기</button>
@@ -91,9 +99,9 @@ export default function ImportNotionPage() {
         </div>
       )}
       {/* 결과 */}
-      {flag && (
+      {/*flag && (
         <MarkdownRenderer content={content} />
-      )}
+      )*/}
     </div>
   )
 
