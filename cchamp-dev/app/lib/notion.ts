@@ -7,8 +7,13 @@ const notion = new Client({
 
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-export async function getNotionPageMarkdown(pageId: string): Promise<string> {
-  const mdBlocks = await n2m.pageToMarkdown(pageId);
-  const mdString = n2m.toMarkdownString(mdBlocks);
-  return typeof mdString === "string" ? mdString : mdString.parent;
+export async function getNotionPageMarkdown(pageId: string): Promise<string | null> {
+  try{
+    const mdBlocks = await n2m.pageToMarkdown(pageId);
+    const mdString = n2m.toMarkdownString(mdBlocks);
+    return typeof mdString === "string" ? mdString : mdString.parent;
+  }
+  catch(e){
+    return null;
+  }
 }

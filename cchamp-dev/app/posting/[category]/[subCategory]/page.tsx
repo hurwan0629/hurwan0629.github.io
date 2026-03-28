@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Image from 'next/image';
-import picture from './posts/2.png';
 import PostListLayout from '@/app/components/posting-page/post-list-layout';
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 
 type PathVariables = {
   params: Promise<{
@@ -41,8 +40,12 @@ export default async function NextjsPage({ params }: PathVariables) {
   });
   
   return (
-    <div className="w-full h-full p-4 bg-white/70 rounded-md shadow-md">
+    <div className="relative w-full h-full p-4 bg-white/70 rounded-md shadow-md">
       <PostListLayout posts={posts} category={category} subCategory={subCategory} />
+      <Link href={`/posting/${category}/${subCategory}/import-notion`} 
+        className="absolute bottom-4 right-4 w-[180px] h-[60px] text-lg font-bold bg-black text-white p-1 rounded-md flex items-center justify-center" >
+        노션에서 글 불러오기
+      </Link>
     </div>
   );
 }
